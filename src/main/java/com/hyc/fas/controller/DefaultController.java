@@ -1,17 +1,18 @@
 package com.hyc.fas.controller;
 
-import org.springframework.stereotype.Controller;
+import com.hyc.fas.annonation.NoAuthController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * TODO
+ * 默认处理类
  *
  * @author <a href="mailto:meacial@live.cn">Gangping Li</a>
- * @version 1.0, 2016/11/21 14:46
+ * @version 1.0, 2016/11/22 16:14
  */
-@Controller
-public class Home {
-    @RequestMapping("/")
+@NoAuthController
+@RequestMapping("/")
+public class DefaultController {
+    @RequestMapping("")
     public String index() {
         return "login";
     }

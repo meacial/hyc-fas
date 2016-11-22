@@ -9,90 +9,123 @@
     <script src="webjars/bootstrap/js/bootstrap.min.js"></script>
     <link href="css/common.css" type="text/css" rel="stylesheet"/>
     <link href="webjars/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <link href="webjars/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet"/>
 
     <style type="text/css">
-        .container {
+        body {
             /*background-color: cadetblue;*/
+            background-color: #f0f0f0;
         }
+
         .container .login-form {
             margin: auto;
             width: 50%;
             height: 70%;
-            margin-top: 50%;
-            background-color: aquamarine;
+            margin-top: 200px;
+            text-align: center;
+            border: solid 1px #c8c8c8;
+            background-color: #ffffff;
         }
 
         .container .login-form .login-title {
             width: 100%;
-            text-align: center;
+            margin: auto;
+            margin-bottom: 50px;
+            margin-top: 40px;
         }
+
+        .container .login-form .form {
+            width: 70%;
+            margin: auto;
+        }
+
+        .container .login-form .form .form-group {
+            margin-bottom: 40px;
+        }
+
+        /*.error {
+            font-size: 12px;
+            margin-left: 10px;
+            color: red;
+            float: left;
+        }*/
+        /*.container .login-form .form .form-group img {
+            width: 100%;
+            height: 10%;
+        }*/
     </style>
+    <script type="application/javascript">
+        $(document).ready(function () {
+            var $kaptcha = $("#kaptcha");
+            $kaptcha.on('click', function () {
+               $(this).attr('src', 'kaptcha/gen?e=' + new Date());
+            });
+            $kaptcha.trigger('click');
+
+            $("#submitbtn").click(function() {
+                $.ajax({
+                    url: 'user/login',
+                    type: 'post',
+                    data: $(this).serialize(),
+                    dataType: 'html',
+                    success : function (data) {
+                        if ('success' == data) {
+                            location.href = 'auth/main';
+                        } else {
+                            location.href = '';
+                        }
+                    },
+                    error : function () {
+                        alert("登录失败")
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
-
-    <!--<div class="login-form">
-        <div class="login-title">
-            <span><h3>和运筹理财顾问查询系统</h3></span>
-        </div>
-        <form class="form" id="form" method="post" role="form">
+<div class="container">
+<div class="login-form">
+    <div class="login-title">
+        <span><h3>和运筹理财顾问查询系统</h3></span>
+    </div>
+    <form class="form" id="form" action="" method="post" role="form">
             <div class="form-group">
-                <div class="form-group">
-
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-user"></i>
-                        </div>
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Username" autocomplete="off"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-key"></i>
-                        </div>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block btn-login">
-                        <i class="fa fa-sign-in"></i>
-                        Login In
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>-->
-
-
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-                <form class="form-horizontal">
-                    <span class="heading">用户登录</span>
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="用户名或电子邮件"/>
+                <div class="input-group">
+                    <input type="text" class="form-control" name="username" id="username" placeholder="用户名" autocomplete="off"/>
+                    <div class="input-group-addon">
                         <i class="fa fa-user"></i>
                     </div>
-                    <div class="form-group help">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="密　码"/>
-                        <i class="fa fa-lock"></i>
-                        <a href="#" class="fa fa-question-circle"></a>
-                    </div>
-                    <div class="form-group">
-                        <div class="main-checkbox">
-                            <input type="checkbox" value="None" id="checkbox1" name="check"/>
-                            <label for="checkbox1"></label>
-                        </div>
-                        <span class="text">Remember me</span>
-                        <button type="submit" class="btn btn-default">登录</button>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
-    </div>
-
-
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="密&emsp;码" autocomplete="off"/>
+                    <div class="input-group-addon">
+                        <i class="fa fa-key"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="imagecode" id="imagecode" placeholder="验证码" autocomplete="off"/>
+                    <div class="input-group-addon">
+                        <i class="fa fa-eye"></i>
+                    </div>
+                </div>
+                <div>
+                    <img id="kaptcha" src="" alt="点击重新获取"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <button id="submitbtn" type="button" class="btn btn-primary btn-block btn-login">
+                    <i class="fa fa-sign-in"></i>
+                    登录
+                </button>
+            </div>
+    </form>
+</div>
+</div>
 
 </body>
 </html>
