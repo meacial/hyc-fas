@@ -21,7 +21,7 @@
             margin: auto;
             width: 50%;
             height: 70%;
-            margin-top: 200px;
+            margin-top: 10%;
             text-align: center;
             border: solid 1px #c8c8c8;
             background-color: #ffffff;
@@ -66,9 +66,10 @@
                 $.ajax({
                     url: 'user/login',
                     type: 'post',
-                    data: $(this).serialize(),
+                    data: $("#form").serialize(),
                     dataType: 'html',
                     success : function (data) {
+                        alert(data);
                         if ('success' == data) {
                             location.href = 'auth/main';
                         } else {

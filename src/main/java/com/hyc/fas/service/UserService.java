@@ -12,4 +12,6 @@ public interface UserService {
 
     public HycUser user();
 
+    public HycUser getUserByPhone(String phone);
+
 }

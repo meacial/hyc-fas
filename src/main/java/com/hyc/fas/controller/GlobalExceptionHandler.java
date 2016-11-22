@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class GlobalExceptionHandler {
     public static final String DEFAULT_ERROR_VIEW = "error";
+
     @ExceptionHandler(value = AuthCheckException.class)
     @ResponseBody
     public ResponseEntity defaultErrorHandler(HttpServletRequest req, AuthCheckException e) throws Exception {
