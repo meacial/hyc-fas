@@ -2,6 +2,8 @@ package com.hyc.fas.service;
 
 import com.hyc.fas.entity.HycUser;
 
+import java.util.List;
+
 /**
  * TODO
  *
@@ -12,6 +14,6 @@ public interface UserService {
 
     public HycUser user();
 
-    public HycUser getUserByPhone(String phone);
+    public List<HycUser> getUserByPhone(String phone);
 
 }

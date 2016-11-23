@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class HycUser implements Serializable {
 
     private String username;
-    private byte[] password;
+    private String password;
     private String userid;
 
 
@@ -27,13 +27,12 @@ public class HycUser implements Serializable {
      * @param username
      * @param password
      */
-    public HycUser(String username, byte[] password,String userid) {
+    public HycUser(String username, String password,String userid) {
         this();
         this.username = username;
         this.password = password;
         this.userid = userid;
     }
-
 
     public String getUsername() {
         return username;
@@ -43,11 +42,11 @@ public class HycUser implements Serializable {
         this.username = username;
     }
 
-    public byte[] getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(byte[] password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -58,4 +57,13 @@ public class HycUser implements Serializable {
     public void setUserid(String userid) {
         this.userid = userid;
     }
+
+    @Override
+    public String toString() {
+        return new StringBuilder("HycUser [")
+                .append("username = ").append(username)
+                .append("userid = ").append(userid)
+                .append("]").toString();
+    }
+
 }
