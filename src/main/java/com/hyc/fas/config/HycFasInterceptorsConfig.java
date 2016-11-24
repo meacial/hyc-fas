@@ -1,7 +1,6 @@
 package com.hyc.fas.config;
 
 import com.hyc.fas.common.HycFasDict;
-import com.hyc.fas.exception.AuthCheckException;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,7 +39,8 @@ public class HycFasInterceptorsConfig extends WebMvcConfigurerAdapter {
                     past = session.getAttribute(HycFasDict.USERTOKEN) == null ? false : true;
                 }
                 if (past == false) {
-                    throw new AuthCheckException(handler.toString());
+                    // throw new AuthCheckException(handler.toString());
+                    response.sendRedirect(request.getContextPath());
                 }
                 return past;
             }

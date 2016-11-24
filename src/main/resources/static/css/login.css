@@ -1,0 +1,41 @@
+body {
+    /*background-color: cadetblue;*/
+    background-color: #f0f0f0;
+}
+
+.container .login-form {
+    margin: auto;
+    width: 50%;
+    height: 70%;
+    margin-top: 10%;
+    text-align: center;
+    border: solid 1px #c8c8c8;
+    background-color: #ffffff;
+}
+
+.container .login-form .login-title {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 50px;
+    margin-top: 40px;
+}
+
+.container .login-form .form {
+    width: 70%;
+    margin: auto;
+}
+
+.container .login-form .form .form-group {
+    margin-bottom: 40px;
+}
+
+/*.error {
+    font-size: 12px;
+    margin-left: 10px;
+    color: red;
+    float: left;
+}*/
+/*.container .login-form .form .form-group img {
+    width: 100%;
+    height: 10%;
+}*/

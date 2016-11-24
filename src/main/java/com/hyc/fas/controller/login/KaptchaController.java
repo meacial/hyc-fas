@@ -2,6 +2,7 @@ package com.hyc.fas.controller.login;
 
 import com.hyc.fas.annonation.NoAuthController;
 import com.hyc.fas.common.HycFasDict;
+import com.hyc.fas.controller.AbstractController;
 import org.patchca.service.Captcha;
 import org.patchca.service.CaptchaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ import java.io.IOException;
  */
 @NoAuthController
 @RequestMapping("/kaptcha")
-public class KaptchaController {
+public class KaptchaController extends AbstractController {
     @Autowired
     private CaptchaService captchaService;
 

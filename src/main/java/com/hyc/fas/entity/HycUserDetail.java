@@ -10,6 +10,8 @@ import java.util.Date;
  */
 public class HycUserDetail extends HycUser {
 
+    private String tyId;
+
     private String userId;      // 用户ID
 
     private String phonev;      // 用户手机号
@@ -17,6 +19,14 @@ public class HycUserDetail extends HycUser {
     private Date registDateTime;// 用户注册时间
 
     private String realName;    // 用户真实姓名
+
+    public String getTyId() {
+        return tyId;
+    }
+
+    public void setTyId(String tyId) {
+        this.tyId = tyId;
+    }
 
     public String getUserId() {
         return userId;
@@ -49,4 +59,16 @@ public class HycUserDetail extends HycUser {
     public void setRealName(String realName) {
         this.realName = realName;
     }
+
+    @Override
+    public String toString() {
+        return new StringBuilder("[ HycUserDetail : ")
+                .append("tyId=").append(tyId).append(" , ")
+                .append("userId=").append(userId).append(" , ")
+                .append("phonev=").append(phonev).append(" , ")
+                .append("registDateTime=").append(registDateTime).append(" , ")
+                .append("realName=").append(realName)
+                .append(" ] ").toString();
+    }
+
 }

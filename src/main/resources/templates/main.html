@@ -1,12 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
 <head>
     <meta charset="UTF-8"/>
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>和云筹-理财顾问登录系统</title>
+    <link th:href="@{/images/sm-logo.ico}" rel="shortcut icon" type="image/x-icon"/>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/webjars/font-awesome/css/font-awesome.min.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/common.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 
-    <h3>投资用户统计</h3>
+    <div class="container">
 
+        <div class="content">
+
+            <div class="head">
+                <div class="logout"><a href="#">安全退出</a></div>
+            </div>
+
+            <div class="form">
+
+                <div class="form_title"><h4>推广数据查询</h4><hr/></div>
+
+                <div class="item">
+                    选择时间：<input name="starttime" value="201511234324"/> - <input name="endtime" value="234023523054"/>
+                    <span class="qryBtn"><button id="qryBtn" class="btn btn-primary">查询</button></span>
+                </div>
+
+                <div class="item">
+                    选择邀请人级别：
+                    <input type="radio" name="investorType" id="redirect" value="1"/><label for="redirect">直接投资用户</label>
+                    <input type="radio" name="investorType" id="noredirect" value="2"/><label for="noredirect">间接投资用户</label>
+                </div>
+
+            </div>
+
+            <div class="table">
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
 </body>
 </html>

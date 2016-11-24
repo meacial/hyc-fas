@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyc.fas.mapper.HycUserDetailMapper">
+
+
+    <select id="getTgUserDetails" resultType="HycUserDetail" parameterType="string">
+        SELECT
+          *
+        FROM (SELECT
+                ifnull(ty_cpsid, ty_id) AS tyId,
+                u_i_id                  AS userId,
+                phone_v                 AS phonev,
+                create_date_time        AS registDateTime,
+                real_name               AS realName
+              FROM user_info AS u1) AS u2
+        WHERE u2.tyId =  #{userid}
+    </select>
+
+
+    <select id="getHycUserDeatil" resultType="HycUserDetail" parameterType="string">
+        SELECT
+                u_i_id                  AS userId,
+                phone_v                 AS phonev,
+                create_date_time        AS registDateTime,
+                real_name               AS realName
+         FROM user_info WHERE u_i_id =  #{userid}
+    </select>
+</mapper>

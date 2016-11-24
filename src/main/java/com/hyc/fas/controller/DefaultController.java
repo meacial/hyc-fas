@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @NoAuthController
 @RequestMapping("/")
-public class DefaultController {
+public class DefaultController extends AbstractController {
     @RequestMapping("")
     public String index() {
         return "login";

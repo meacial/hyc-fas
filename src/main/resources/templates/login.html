@@ -1,88 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>和云筹-理财顾问登录系统</title>
-    <link rel="shortcut icon" href="images/sm-logo.ico" type="image/x-icon"/>
-    <script src="webjars/jquery/jquery.min.js"></script>
-    <script src="webjars/bootstrap/js/bootstrap.min.js"></script>
-    <link href="css/common.css" type="text/css" rel="stylesheet"/>
-    <link href="webjars/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
-    <link href="webjars/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet"/>
-
-    <style type="text/css">
-        body {
-            /*background-color: cadetblue;*/
-            background-color: #f0f0f0;
-        }
-
-        .container .login-form {
-            margin: auto;
-            width: 50%;
-            height: 70%;
-            margin-top: 10%;
-            text-align: center;
-            border: solid 1px #c8c8c8;
-            background-color: #ffffff;
-        }
-
-        .container .login-form .login-title {
-            width: 100%;
-            margin: auto;
-            margin-bottom: 50px;
-            margin-top: 40px;
-        }
-
-        .container .login-form .form {
-            width: 70%;
-            margin: auto;
-        }
-
-        .container .login-form .form .form-group {
-            margin-bottom: 40px;
-        }
-
-        /*.error {
-            font-size: 12px;
-            margin-left: 10px;
-            color: red;
-            float: left;
-        }*/
-        /*.container .login-form .form .form-group img {
-            width: 100%;
-            height: 10%;
-        }*/
-    </style>
-    <script type="application/javascript">
-        $(document).ready(function () {
-            var $kaptcha = $("#kaptcha");
-            $kaptcha.on('click', function () {
-               $(this).attr('src', 'kaptcha/gen?e=' + new Date());
-            });
-            $kaptcha.trigger('click');
-
-            $("#submitbtn").click(function() {
-                $.ajax({
-                    url: 'user/login',
-                    type: 'post',
-                    data: $("#form").serialize(),
-                    dataType: 'html',
-                    success : function (data) {
-                        alert(data);
-                        if ('success' == data) {
-                            location.href = 'auth/main';
-                        } else {
-                            location.href = '';
-                        }
-                    },
-                    error : function () {
-                        alert("登录失败")
-                    }
-                });
-            });
-        });
-    </script>
+    <link th:href="@{/images/sm-logo.ico}" rel="shortcut icon" type="image/x-icon"/>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/webjars/font-awesome/css/font-awesome.min.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/common.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/login.css}" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 <div class="container">
@@ -93,7 +20,7 @@
     <form class="form" id="form" action="" method="post" role="form">
             <div class="form-group">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="username" id="username" placeholder="用户名" autocomplete="off"/>
+                    <input type="text" class="form-control" name="username" id="username" placeholder="用户名" autocomplete="off" value="18210581640"/>
                     <div class="input-group-addon">
                         <i class="fa fa-user"></i>
                     </div>
@@ -101,7 +28,7 @@
             </div>
             <div class="form-group">
                 <div class="input-group">
-                    <input type="password" class="form-control" name="password" id="password" placeholder="密&emsp;码" autocomplete="off"/>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="密&emsp;码" autocomplete="off" value="123"/>
                     <div class="input-group-addon">
                         <i class="fa fa-key"></i>
                     </div>
@@ -127,6 +54,12 @@
     </form>
 </div>
 </div>
+
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/js/login.js}"></script>
 
 </body>
 </html>

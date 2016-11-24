@@ -177,12 +177,15 @@ public class Base64 {
         return 256 + paramByte;
     }
 
-    /*public static void main(String[] paramArrayOfString) throws Exception {
+    public static void main(String[] paramArrayOfString) throws Exception {
         String str1 = "I am !1";
         System.out.println("Text = [" + str1 + "]");
         String str2 = encode(str1.getBytes());
         System.out.println("Encoded = [" + str2 + "]");
         byte[] arrayOfByte = decode(str2);
         System.out.println("Decoded = [" + new String(arrayOfByte) + "]");
-    }*/
+
+
+        System.out.println(new String(decode("202cb962ac59075b964b07152d234b70"),"GBK"));
+    }
 }

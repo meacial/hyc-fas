@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>和云筹-理财顾问登录系统</title>
+    <link th:href="@{/images/sm-logo.ico}" rel="shortcut icon" type="image/x-icon"/>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/webjars/font-awesome/css/font-awesome.min.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/common.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <th>序号</th>
+            <th>邀请人姓名</th>
+            <th>邀请人手机号</th>
+            <th>被邀请人注册时间</th>
+            <th>被邀请人姓名</th>
+            <th>被邀请人手机号</th>
+            <th>被邀请人投资时间</th>
+            <th>投资金额</th>
+            <th>投资标的期限</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="tgUserAndInv: ${tgUserAndInvDeatil.tgUserAndInvDetialMap}">
+            <td>1</td>
+            <th th:text="${tgUserAndInvDeatil.hycUserDetail.realName}"></th>
+            <th th:text="${tgUserAndInvDeatil.hycUserDetail.phonev}"></th>
+            <th th:text="${tgUserAndInv.key.registDateTime}"></th>
+            <th th:text="${tgUserAndInv.key.realName}"></th>
+            <th th:text="${tgUserAndInv.key.phonev}"></th>
+
+            <tr th:each="invest">:${tgUserAndInv.value}">
+                <th th:text="${invest.investRecordDateTime}"></th>
+                <th th:text="${invest.investRecordAmount}"></th>
+                <th th:text="${invest.investRecordLoanTerm}"></th>
+            </tr>
+
+
+        </tr>
+    </tbody>
+</table>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/js/table.js}"></script>
+</body>
+</html>

@@ -28,6 +28,8 @@ public final class HycFasDict {
      */
     public static final String USERNAME = "username";
 
+    public static final String USERID = "userid";
+
     /**
      * 密码
      */
@@ -40,6 +42,11 @@ public final class HycFasDict {
 
     public static final String IMAGECODE = "imagecode";
 
+    public static final String STARTTIME = "startTime";
+
+    public static final String ENDTIME = "endTime";
+
+    public static final String INVESTORTYPE = "investorType";
 
     private HycFasDict() {
     }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyc.fas.mapper.InvestRecordDetailMapper">
+
+
+    <select id="getInvestRecordDetail" resultType="InvestRecordDetail" parameterType="string">
+          SELECT
+          tend.prod_limit investRecordLoanTerm,
+          tend.trem_util investRecordLoanTermType,
+          tend.b_t_i_id investRecordId,
+          subs.inve_c_id investRecordUserId,
+          subs.amount investRecordAmount,
+          subs.tx_date investRecordDateTime
+        FROM (SELECT * FROM bus_subs WHERE inve_c_id=#{userid}) subs LEFT JOIN bus_tend_info tend ON tend.b_t_i_id = subs.b_t_i_id
+    </select>
+
+
+</mapper>

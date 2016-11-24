@@ -1,5 +1,6 @@
 package com.hyc.fas.mapper;
 
+import com.hyc.fas.entity.HycUser;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -12,5 +13,9 @@ import java.util.Map;
  */
 @Component
 public interface HycUserMapper {
-    public Map getByPhone(String phone);
+
+    public HycUser getHycUserByPhone(String phone);
+
+    @Deprecated
+    public Map getMapByPhone(String phone);
 }

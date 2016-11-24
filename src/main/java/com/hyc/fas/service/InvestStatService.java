@@ -1,8 +1,6 @@
 package com.hyc.fas.service;
 
-import com.hyc.fas.entity.InvestRecordDetail;
-
-import java.util.List;
+import com.hyc.fas.entity.TgUserAndInvDeatil;
 
 /**
  * TODO
@@ -11,6 +9,6 @@ import java.util.List;
  * @version 1.0, 2016/11/22 18:05
  */
 public interface InvestStatService {
-    public List<InvestRecordDetail> invest();
+    public TgUserAndInvDeatil userAndInvDetail(String userid);
 
 }

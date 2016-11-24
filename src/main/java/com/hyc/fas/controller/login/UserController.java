@@ -2,8 +2,10 @@ package com.hyc.fas.controller.login;
 
 import com.hyc.fas.annonation.NoAuthController;
 import com.hyc.fas.common.HycFasDict;
+import com.hyc.fas.common.SecurityUtil;
 import com.hyc.fas.common.StringUtils;
 import com.hyc.fas.config.HycFasProperties;
+import com.hyc.fas.controller.AbstractController;
 import com.hyc.fas.entity.HycUser;
 import com.hyc.fas.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
+import java.io.UnsupportedEncodingException;
 
 /**
  * TODO
@@ -22,7 +24,7 @@ import java.util.List;
  */
 @NoAuthController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends AbstractController {
 
     @Autowired
     private UserService userService;
@@ -40,22 +42,22 @@ public class UserController {
             return "fail";
         }
 
+        // TODO 这段执行特别慢，测试的时候，暂时注掉
         // String desPhone = AppSecUtil.encryptMode(hycFasProperties.getDeskey(),userPhone,hycFasProperties.getCharset());
-        String desPhone = "Iq63w+w1ATP35ycdbXzIyA==";
-
-        List<HycUser> hycUsers = userService.getUserByPhone(desPhone);
-        HycUser hycUser = null;
-        if (hycUsers != null && hycUsers.size() == 1) {
-            hycUser = hycUsers.get(0);
-        }
-
+        String desPhone = "pvsJr8X5TkeLLvVMzEuJpA==";
+        HycUser hycUser = userService.getHycUserByPhone(desPhone);
         if (hycUser == null) {
             return "fail";
         }
-        /*if (!Arrays.equals(hycUser.getPassword(), password.getBytes())) {
+        try {
+            if (!hycUser.getPassword().equals(SecurityUtil.hashWithBase64Encoded("md5", password.getBytes("utf-8")))) {
+                return "fail";
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
             return "fail";
-        }*/
-        request.getSession().setAttribute(HycFasDict.USERTOKEN, "user_i_d");
+        }
+        saveUserId2Session(request, hycUser.getUserid());
         return "success";
     }
 }
