@@ -24,13 +24,13 @@ public class InvestRecordDetail implements Serializable {
 
     private String rec_real_name;           // 推荐人真实姓名
 
-    private String rec_create_date_time;    // 推荐人注册时间
+    private Date rec_create_date_time;    // 推荐人注册时间
 
     private String inv_phone_v;             // 投资人手机号
 
     private String inv_real_name;           // 投资人真实姓名
 
-    private String inv_create_date_time;    // 投资人注册时间
+    private Date inv_create_date_time;    // 投资人注册时间
 
 
 
@@ -54,7 +54,7 @@ public class InvestRecordDetail implements Serializable {
      * @param inv_real_name
      * @param inv_create_date_time
      */
-    public InvestRecordDetail(Date investRecordDateTime, BigDecimal investRecordAmount, String investRecordLoanTerm, String investRecordLoanTermType, String rec_phone_v, String rec_real_name, String rec_create_date_time, String inv_phone_v, String inv_real_name, String inv_create_date_time) {
+    public InvestRecordDetail(Date investRecordDateTime, BigDecimal investRecordAmount, String investRecordLoanTerm, String investRecordLoanTermType, String rec_phone_v, String rec_real_name, Date rec_create_date_time, String inv_phone_v, String inv_real_name, Date inv_create_date_time) {
         this.investRecordDateTime = investRecordDateTime;
         this.investRecordAmount = investRecordAmount;
         this.investRecordLoanTerm = investRecordLoanTerm;
@@ -115,11 +115,11 @@ public class InvestRecordDetail implements Serializable {
         this.rec_real_name = rec_real_name;
     }
 
-    public String getRec_create_date_time() {
+    public Date getRec_create_date_time() {
         return rec_create_date_time;
     }
 
-    public void setRec_create_date_time(String rec_create_date_time) {
+    public void setRec_create_date_time(Date rec_create_date_time) {
         this.rec_create_date_time = rec_create_date_time;
     }
 
@@ -139,11 +139,11 @@ public class InvestRecordDetail implements Serializable {
         this.inv_real_name = inv_real_name;
     }
 
-    public String getInv_create_date_time() {
+    public Date getInv_create_date_time() {
         return inv_create_date_time;
     }
 
-    public void setInv_create_date_time(String inv_create_date_time) {
+    public void setInv_create_date_time(Date inv_create_date_time) {
         this.inv_create_date_time = inv_create_date_time;
     }
 }
