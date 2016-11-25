@@ -20,13 +20,23 @@ public class InvestStatServiceImpl implements InvestStatService {
     private InvestRecordDetailMapper investRecordDetailMapper;
 
     @Override
-    public List<InvestRecordDetail> directUserAndInvDetail(String userid) {
-        return investRecordDetailMapper.getDirectInvestRecordDetail(userid);
+    public List<InvestRecordDetail> directUserAndInvDetail(String userid,String startTime,String endTime) {
+        try {
+            return investRecordDetailMapper.getDirectInvestRecordDetail(userid,startTime,endTime);
+        } catch (Throwable throwable) {
+            System.out.println(throwable);
+            return null;
+        }
     }
 
     @Override
-    public List<InvestRecordDetail> inDirectUserAndInvDetail(String userid) {
-        return investRecordDetailMapper.getInDirectInvestRecordDetail(userid);
+    public List<InvestRecordDetail> inDirectUserAndInvDetail(String userid,String startTime,String endTime) {
+        try {
+            return investRecordDetailMapper.getInDirectInvestRecordDetail(userid,startTime,endTime);
+        } catch (Throwable throwable) {
+            System.out.println(throwable);
+            return null;
+        }
     }
 
 }

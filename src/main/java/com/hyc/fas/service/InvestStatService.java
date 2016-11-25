@@ -13,9 +13,9 @@ import java.util.List;
  */
 @Component
 public interface InvestStatService {
-    public List<InvestRecordDetail> directUserAndInvDetail(String userid);
+    public List<InvestRecordDetail> directUserAndInvDetail(String userid, String startTime, String endTime);
 
-    public List<InvestRecordDetail> inDirectUserAndInvDetail(String userid);
+    public List<InvestRecordDetail> inDirectUserAndInvDetail(String userid, String startTime, String endTime);
 
 
 }

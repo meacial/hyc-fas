@@ -3,6 +3,7 @@ package com.hyc.fas.controller.content;
 import com.hyc.fas.annonation.NeedAuthController;
 import com.hyc.fas.common.HycFasConst;
 import com.hyc.fas.common.HycFasDict;
+import com.hyc.fas.common.StringUtils;
 import com.hyc.fas.controller.AbstractController;
 import com.hyc.fas.entity.InvestRecordDetail;
 import com.hyc.fas.service.HycUserDetailService;
@@ -32,8 +33,18 @@ public class InvestStatController extends AbstractController {
 
     @RequestMapping("/table")
     public String table(HttpServletRequest request, HttpServletResponse response, Model model) {
+
+        // 默认选择7天时间的数据
         String startTime = request.getParameter(HycFasDict.STARTTIME);
         String endTime = request.getParameter(HycFasDict.ENDTIME);
+
+        if (StringUtils.isEmpty(startTime)) {
+            startTime = null;
+        }
+        if (StringUtils.isEmpty(endTime)) {
+            endTime = null;
+        }
+
         String investorType = request.getParameter(HycFasDict.INVESTORTYPE);
         if (false == (HycFasConst.INVESTORTYPE_DIRECT.equals(investorType) || HycFasConst.INVESTORTYPE_INDIRECT.equals(investorType))) {
             logger.warn("Illage args : [investorType={}]", investorType);
@@ -42,11 +53,11 @@ public class InvestStatController extends AbstractController {
         List<InvestRecordDetail> investRecordDetails = null;
         if (HycFasConst.INVESTORTYPE_DIRECT.equals(investorType)) {
             // 直接投资数据
-            investRecordDetails = investStatService.directUserAndInvDetail(getUserIdFromSession(request));
+            investRecordDetails = investStatService.directUserAndInvDetail(getUserIdFromSession(request),startTime,endTime);
             model.addAttribute("investRecordDetails", investRecordDetails);
         } else {
             // 间接投资数据
-            investRecordDetails = investStatService.inDirectUserAndInvDetail(getUserIdFromSession(request));
+            investRecordDetails = investStatService.inDirectUserAndInvDetail(getUserIdFromSession(request),startTime,endTime);
         }
         if (null != investRecordDetails && false==investRecordDetails.isEmpty()) {
             model.addAttribute("investRecordDetails", investRecordDetails);

@@ -54,6 +54,16 @@
           LEFT JOIN bus_tend_info tend
             ON tend.b_t_i_id = subs.b_t_i_id
         WHERE subs.tx_date IS NOT NULL
+        <if test="startTime != null">
+            AND <![CDATA[ subs.tx_date >= #{startTime} ]]>
+        </if>
+        <if test="endTime != null">
+            AND <![CDATA[ subs.tx_date <= #{endTime} ]]>
+        </if>
+        ORDER BY
+          subs.rec_create_date_time DESC ,
+          subs.inv_create_date_time DESC ,
+          subs.tx_date DESC
     </select>
 
 
@@ -107,6 +117,16 @@
           LEFT JOIN bus_tend_info tend
             ON tend.b_t_i_id = subs.b_t_i_id
         WHERE subs.tx_date IS NOT NULL
+        <if test="startTime != null">
+            AND <![CDATA[ subs.tx_date >= #{startTime} ]]>
+        </if>
+        <if test="endTime != null">
+            AND <![CDATA[ subs.tx_date <= #{endTime} ]]>
+        </if>
+        ORDER BY
+          subs.rec_create_date_time DESC ,
+          subs.inv_create_date_time DESC ,
+          subs.tx_date DESC
     </select>
 
 </mapper>
