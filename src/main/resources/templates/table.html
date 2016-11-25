@@ -21,12 +21,10 @@
         <td>1</td>
         <td th:text="${investRecordDetail.rec_real_name}"></td>
         <td th:text="${investRecordDetail.rec_phone_v}"></td>
-        <!--<td th:text="${#dates.format(investRecordDetail.inv_create_date_time, 'yyyy-MM-dd HH:mm')}">N/A</td>-->
-        <td th:text="${investRecordDetail.inv_create_date_time}">N/A</td>
+        <td th:text="${#dates.format(investRecordDetail.inv_create_date_time, 'yyyy-MM-dd HH:mm')}">N/A</td>
         <td th:text="${investRecordDetail.inv_real_name}"></td>
         <td th:text="${investRecordDetail.inv_phone_v}"></td>
-        <!--<td th:text="${#dates.format(investRecordDetail.investRecordDateTime, 'yyyy-MM-dd HH:mm')}">N/A</td>-->
-        <td th:text="${investRecordDetail.investRecordDateTime}">N/A</td>
+        <td th:text="${#dates.format(investRecordDetail.investRecordDateTime, 'yyyy-MM-dd HH:mm')}">N/A</td>
         <td th:text="${#numbers.formatDecimal(investRecordDetail.investRecordAmount,1,2)}"></td>
         <td th:text="${investRecordDetail.investRecordLoanTerm}"></td>
     </tr>
