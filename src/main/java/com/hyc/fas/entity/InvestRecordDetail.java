@@ -12,10 +12,6 @@ import java.util.Date;
  */
 public class InvestRecordDetail implements Serializable {
 
-    private String investRecordId;          // 投资记录ID
-
-    private String investRecordUserId;      // 投资记录对应用户ID
-
     private Date investRecordDateTime;      // 投资记录创建时间
 
     private BigDecimal investRecordAmount;  // 投资记录金额
@@ -23,6 +19,19 @@ public class InvestRecordDetail implements Serializable {
     private String investRecordLoanTerm;    // 投资记录投资期限
 
     private String investRecordLoanTermType;// 投资记录投资期限类别（按天，按月）
+
+    private String rec_phone_v;             // 推荐人手机号
+
+    private String rec_real_name;           // 推荐人真实姓名
+
+    private String rec_create_date_time;    // 推荐人注册时间
+
+    private String inv_phone_v;             // 投资人手机号
+
+    private String inv_real_name;           // 投资人真实姓名
+
+    private String inv_create_date_time;    // 投资人注册时间
+
 
 
     /**
@@ -33,38 +42,29 @@ public class InvestRecordDetail implements Serializable {
     }
 
     /**
-     * create a new instance of InvestRecordDetail.
-     * @param investRecordId
-     * @param investRecordUserId
+     *
      * @param investRecordDateTime
      * @param investRecordAmount
      * @param investRecordLoanTerm
      * @param investRecordLoanTermType
+     * @param rec_phone_v
+     * @param rec_real_name
+     * @param rec_create_date_time
+     * @param inv_phone_v
+     * @param inv_real_name
+     * @param inv_create_date_time
      */
-    public InvestRecordDetail(String investRecordId, String investRecordUserId, Date investRecordDateTime, BigDecimal investRecordAmount, String investRecordLoanTerm, String investRecordLoanTermType) {
-        this();
-        this.investRecordId = investRecordId;
-        this.investRecordUserId = investRecordUserId;
+    public InvestRecordDetail(Date investRecordDateTime, BigDecimal investRecordAmount, String investRecordLoanTerm, String investRecordLoanTermType, String rec_phone_v, String rec_real_name, String rec_create_date_time, String inv_phone_v, String inv_real_name, String inv_create_date_time) {
         this.investRecordDateTime = investRecordDateTime;
         this.investRecordAmount = investRecordAmount;
         this.investRecordLoanTerm = investRecordLoanTerm;
         this.investRecordLoanTermType = investRecordLoanTermType;
-    }
-
-    public String getInvestRecordId() {
-        return investRecordId;
-    }
-
-    public void setInvestRecordId(String investRecordId) {
-        this.investRecordId = investRecordId;
-    }
-
-    public String getInvestRecordUserId() {
-        return investRecordUserId;
-    }
-
-    public void setInvestRecordUserId(String investRecordUserId) {
-        this.investRecordUserId = investRecordUserId;
+        this.rec_phone_v = rec_phone_v;
+        this.rec_real_name = rec_real_name;
+        this.rec_create_date_time = rec_create_date_time;
+        this.inv_phone_v = inv_phone_v;
+        this.inv_real_name = inv_real_name;
+        this.inv_create_date_time = inv_create_date_time;
     }
 
     public Date getInvestRecordDateTime() {
@@ -97,5 +97,53 @@ public class InvestRecordDetail implements Serializable {
 
     public void setInvestRecordLoanTermType(String investRecordLoanTermType) {
         this.investRecordLoanTermType = investRecordLoanTermType;
+    }
+
+    public String getRec_phone_v() {
+        return rec_phone_v;
+    }
+
+    public void setRec_phone_v(String rec_phone_v) {
+        this.rec_phone_v = rec_phone_v;
+    }
+
+    public String getRec_real_name() {
+        return rec_real_name;
+    }
+
+    public void setRec_real_name(String rec_real_name) {
+        this.rec_real_name = rec_real_name;
+    }
+
+    public String getRec_create_date_time() {
+        return rec_create_date_time;
+    }
+
+    public void setRec_create_date_time(String rec_create_date_time) {
+        this.rec_create_date_time = rec_create_date_time;
+    }
+
+    public String getInv_phone_v() {
+        return inv_phone_v;
+    }
+
+    public void setInv_phone_v(String inv_phone_v) {
+        this.inv_phone_v = inv_phone_v;
+    }
+
+    public String getInv_real_name() {
+        return inv_real_name;
+    }
+
+    public void setInv_real_name(String inv_real_name) {
+        this.inv_real_name = inv_real_name;
+    }
+
+    public String getInv_create_date_time() {
+        return inv_create_date_time;
+    }
+
+    public void setInv_create_date_time(String inv_create_date_time) {
+        this.inv_create_date_time = inv_create_date_time;
     }
 }

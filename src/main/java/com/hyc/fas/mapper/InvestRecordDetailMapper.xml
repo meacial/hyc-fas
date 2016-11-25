@@ -4,16 +4,109 @@
 <mapper namespace="com.hyc.fas.mapper.InvestRecordDetailMapper">
 
 
-    <select id="getInvestRecordDetail" resultType="InvestRecordDetail" parameterType="string">
-          SELECT
-          tend.prod_limit investRecordLoanTerm,
-          tend.trem_util investRecordLoanTermType,
-          tend.b_t_i_id investRecordId,
-          subs.inve_c_id investRecordUserId,
-          subs.amount investRecordAmount,
-          subs.tx_date investRecordDateTime
-        FROM (SELECT * FROM bus_subs WHERE inve_c_id=#{userid}) subs LEFT JOIN bus_tend_info tend ON tend.b_t_i_id = subs.b_t_i_id
+    <!--
+        直接用户投资查询
+     -->
+    <select id="getDirectInvestRecordDetail" resultType="InvestRecordDetail" parameterType="string">
+        SELECT
+          tend.prod_limit           investRecordLoanTerm,
+          tend.trem_util            investRecordLoanTermType,
+          subs.amount               investRecordAmount,
+          subs.tx_date              investRecordDateTime,
+          subs.inv_phone_v          inv_phone_v,
+          subs.inv_real_name        inv_real_name,
+          subs.inv_create_date_time inv_create_date_time,
+          subs.rec_phone_v          rec_phone_v,
+          subs.rec_real_name        rec_real_name,
+          subs.rec_create_date_time rec_create_date_time
+        FROM (SELECT
+                u2.tyId,
+                u2.u_i_id,
+                u2.phone_v          AS inv_phone_v,
+                u2.real_name        AS inv_real_name,
+                u2.create_date_time AS inv_create_date_time,
+                u3.phone_v          AS rec_phone_v,
+                u3.real_name        AS rec_real_name,
+                u3.create_date_time AS rec_create_date_time,
+                subs1.amount,
+                subs1.tx_date,
+                subs1.b_t_i_id,
+                subs1.inve_c_id
+              FROM bus_subs subs1
+                LEFT JOIN (SELECT
+                             ifnull(ty_cpsid, ty_id) AS tyId,
+                             u_i_id,
+                             create_date_time,
+                             real_name,
+                             phone_v
+                           FROM user_info AS u1) AS u2
+                  ON u2.u_i_id = subs1.inve_c_id
+                LEFT JOIN (SELECT
+                             ifnull(ty_cpsid, ty_id) AS tyId,
+                             u_i_id,
+                             create_date_time,
+                             real_name,
+                             phone_v
+                           FROM user_info AS u1) AS u3
+                  ON u2.tyId = u3.u_i_id
+              WHERE u3.u_i_id = #{userid}
+             ) subs
+          LEFT JOIN bus_tend_info tend
+            ON tend.b_t_i_id = subs.b_t_i_id
+        WHERE subs.tx_date IS NOT NULL
     </select>
 
+
+    <!--
+        间接投资用户查询
+    -->
+    <select id="getInDirectInvestRecordDetail" resultType="InvestRecordDetail" parameterType="string">
+        SELECT
+          tend.prod_limit           investRecordLoanTerm,
+          tend.trem_util            investRecordLoanTermType,
+          subs.amount               investRecordAmount,
+          subs.tx_date              investRecordDateTime,
+          subs.inv_phone_v          inv_phone_v,
+          subs.inv_real_name        inv_real_name,
+          subs.inv_create_date_time inv_create_date_time,
+          subs.rec_phone_v          rec_phone_v,
+          subs.rec_real_name        rec_real_name,
+          subs.rec_create_date_time rec_create_date_time
+        FROM (SELECT
+                u2.tyId,
+                u2.u_i_id,
+                u2.phone_v          AS inv_phone_v,
+                u2.real_name        AS inv_real_name,
+                u2.create_date_time AS inv_create_date_time,
+                u3.phone_v          AS rec_phone_v,
+                u3.real_name        AS rec_real_name,
+                u3.create_date_time AS rec_create_date_time,
+                subs1.amount,
+                subs1.tx_date,
+                subs1.b_t_i_id,
+                subs1.inve_c_id
+              FROM bus_subs subs1
+                LEFT JOIN (SELECT
+                             ifnull(ty_cpsid, ty_id) AS tyId,
+                             u_i_id,
+                             create_date_time,
+                             real_name,
+                             phone_v
+                           FROM user_info AS u1) AS u2
+                  ON u2.u_i_id = subs1.inve_c_id
+                LEFT JOIN (SELECT
+                             ifnull(ty_cpsid, ty_id) AS tyId,
+                             u_i_id,
+                             create_date_time,
+                             real_name,
+                             phone_v
+                           FROM user_info AS u1) AS u3
+                  ON u2.tyId = u3.u_i_id
+              WHERE u3.tyId = #{userid}
+             ) subs
+          LEFT JOIN bus_tend_info tend
+            ON tend.b_t_i_id = subs.b_t_i_id
+        WHERE subs.tx_date IS NOT NULL
+    </select>
 
 </mapper>

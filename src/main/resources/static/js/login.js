@@ -5,7 +5,7 @@
 $(document).ready(function () {
     var $kaptcha = $("#kaptcha");
     $kaptcha.on('click', function () {
-        $(this).attr('src', 'kaptcha/gen?e=' + new Date());
+        $(this).attr('src','kaptcha/gen?e=' + new Date());
     });
     $kaptcha.trigger('click');
 
@@ -23,7 +23,7 @@ $(document).ready(function () {
                 }
             },
             error : function () {
-                alert("登录失败")
+                location.href = '';
             }
         });
     });

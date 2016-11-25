@@ -1,8 +1,6 @@
 package com.hyc.fas.service.impl;
 
-import com.hyc.fas.entity.HycUserDetail;
-import com.hyc.fas.entity.TgUserAndInvDeatil;
-import com.hyc.fas.mapper.HycUserDetailMapper;
+import com.hyc.fas.entity.InvestRecordDetail;
 import com.hyc.fas.mapper.InvestRecordDetailMapper;
 import com.hyc.fas.service.InvestStatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,29 +17,16 @@ import java.util.List;
 @Service
 public class InvestStatServiceImpl implements InvestStatService {
     @Autowired
-    private HycUserDetailMapper hycUserDetailMapper;
-    @Autowired
     private InvestRecordDetailMapper investRecordDetailMapper;
+
     @Override
-    public TgUserAndInvDeatil userAndInvDetail(String userid) {
-
-        TgUserAndInvDeatil tgUserAndInvDeatil = null;
-
-        try {
-            HycUserDetail hycUserDetail = hycUserDetailMapper.getHycUserDeatil(userid);
-
-            // 获取当前用户直接推荐的用户
-            List<HycUserDetail> list = hycUserDetailMapper.getTgUserDetails(userid);
-
-            tgUserAndInvDeatil = new TgUserAndInvDeatil(hycUserDetail);
-
-            for (int i = 0; i < list.size(); i++) {
-                tgUserAndInvDeatil.put(list.get(i), investRecordDetailMapper.getInvestRecordDetail(list.get(i).getUserid()));
-            }
-        } catch (Throwable throwable) {
-            System.out.println(" Err--->"+throwable);
-        }
-
-        return tgUserAndInvDeatil;
+    public List<InvestRecordDetail> directUserAndInvDetail(String userid) {
+        return investRecordDetailMapper.getDirectInvestRecordDetail(userid);
     }
+
+    @Override
+    public List<InvestRecordDetail> inDirectUserAndInvDetail(String userid) {
+        return investRecordDetailMapper.getInDirectInvestRecordDetail(userid);
+    }
+
 }

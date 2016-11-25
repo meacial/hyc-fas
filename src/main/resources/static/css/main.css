@@ -1,7 +1,7 @@
 .container .content {
     /*background-color: aquamarine;*/
     margin: auto;
-    width: 70%;
+    width: 80%;
 }
 
 .container .content .head {
@@ -43,4 +43,28 @@
     width: 100%;
     /*background-color: #ccc;*/
     border: solid 2px black;
+}
+
+table {
+    border: solid 1px black;
+}
+
+table tr th{
+    /*border: solid 0.5px red;*/
+    /*border-bottom: solid 1px yellow;*/
+}
+table td {
+    /*border: solid 0.5px green;*/
+}
+
+/*
+
+th {
+    border: solid 0.5px #666;
+    border-bottom: none;
+}
+*/
+
+table tr td {
+    border: solid 0.5px #666;
 }

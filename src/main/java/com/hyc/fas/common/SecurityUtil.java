@@ -3,7 +3,6 @@ package com.hyc.fas.common;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -56,12 +55,12 @@ public class SecurityUtil {
         }
         return strBuf.toString();
     }
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         try {
             System.out.println(hashWithBase64Encoded("md5", "123".getBytes("utf-8")));
         } catch (UnsupportedEncodingException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    }
+    }*/
 }

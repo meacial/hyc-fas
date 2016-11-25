@@ -12,50 +12,55 @@
     <link th:href="@{/css/main.css}" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-
     <div class="container">
-
         <div class="content">
-
             <div class="head">
                 <div class="logout"><a href="#">安全退出</a></div>
             </div>
-
             <div class="form">
-
                 <div class="form_title"><h4>推广数据查询</h4><hr/></div>
-
                 <div class="item">
                     选择时间：<input name="starttime" value="201511234324"/> - <input name="endtime" value="234023523054"/>
                     <span class="qryBtn"><button id="qryBtn" class="btn btn-primary">查询</button></span>
                 </div>
-
                 <div class="item">
                     选择邀请人级别：
                     <input type="radio" name="investorType" id="redirect" value="1"/><label for="redirect">直接投资用户</label>
                     <input type="radio" name="investorType" id="noredirect" value="2"/><label for="noredirect">间接投资用户</label>
                 </div>
-
             </div>
-
             <div class="table">
-
             </div>
-
-
         </div>
-
-
     </div>
-
-
-
-
-
-
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     <script th:src="@{/js/common.js}"></script>
     <script th:src="@{/js/main.js}"></script>
+    <script th:inline="javascript">
+        $(document).ready(function () {
+            $("#qryBtn").on('click', function () {
+                var $qryBtn = $("#qryBtn");
+                $qryBtn.on('click', function () {
+                    $.ajax({
+                        url: /*[[@{/auth/table}]]*/ '',
+                        type: 'post',
+                        data: {
+                            investorType: $("input[name=investorType]:checked").val(),
+                            starttime: $("input[name=starttime]").val(),
+                            endTime: $("input[name=endtime]").val()
+                        },
+                        dataType: 'html',
+                        success: function (data) {
+                            $(".table").html(data);
+                        },
+                        error: function () {
+                            console.error("err")
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>

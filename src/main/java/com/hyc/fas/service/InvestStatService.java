@@ -1,6 +1,9 @@
 package com.hyc.fas.service;
 
-import com.hyc.fas.entity.TgUserAndInvDeatil;
+import com.hyc.fas.entity.InvestRecordDetail;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * TODO
@@ -8,7 +11,11 @@ import com.hyc.fas.entity.TgUserAndInvDeatil;
  * @author <a href="mailto:meacial@live.cn">Gangping Li</a>
  * @version 1.0, 2016/11/22 18:05
  */
+@Component
 public interface InvestStatService {
-    public TgUserAndInvDeatil userAndInvDetail(String userid);
+    public List<InvestRecordDetail> directUserAndInvDetail(String userid);
+
+    public List<InvestRecordDetail> inDirectUserAndInvDetail(String userid);
+
 
 }

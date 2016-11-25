@@ -58,6 +58,8 @@ public class UserController extends AbstractController {
             return "fail";
         }
         saveUserId2Session(request, hycUser.getUserid());
+        saveUserId2Session(request, "20151222679117864644378624");
+
         return "success";
     }
 }

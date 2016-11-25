@@ -14,6 +14,9 @@ import java.util.List;
 @Component
 public interface InvestRecordDetailMapper {
 
-    public List<InvestRecordDetail> getInvestRecordDetail(String userid);
+    public List<InvestRecordDetail> getDirectInvestRecordDetail(String userid);
+
+    public List<InvestRecordDetail> getInDirectInvestRecordDetail(String userid);
+
 
 }
