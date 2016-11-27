@@ -24,11 +24,11 @@
             </div>
             <div class="item">
                 <!--选择时间：<input name="starttime" class="datetimepicker" th:attr="value=${#dates.format(startTime,'yyyy-MM-dd HH:mm')}" /> - <input name="endtime" type="text" class="datetimepicker" th:attr="value=${#dates.format(endTime,'yyyy-MM-dd HH:mm')}" />-->
-                选择时间：<input name="starttime" class="datetimepicker" type="text"
-                            th:attr="value=${#dates.format(startTime,'yyyy/MM/dd HH:mm')}"/> - <input name="endtime"
+                选择时间：<input name="startTime" class="datetimepicker" type="text"
+                            th:attr="value=${#dates.format(startTime,'yyyy/MM/dd HH:mm')}"/> - <input name="endTime"
                                                                                                       type="text"
                                                                                                       class="datetimepicker"
-                                                                                                      th:attr="value=${#dates.format(endTime,'yyyy-MM-dd HH:mm')}"/>
+                                                                                                      th:attr="value=${#dates.format(endTime,'yyyy/MM/dd HH:mm')}"/>
                 <span class="qryBtn"><button id="qryBtn" class="btn btn-primary">查询</button></span>
             </div>
             <div class="item">
@@ -58,8 +58,8 @@
                 type: 'post',
                 data: {
                     investorType: $("input[name=investorType]:checked").val(),
-                    starttime: $("input[name=starttime]").val(),
-                    endTime: $("input[name=endtime]").val()
+                    startTime: $("input[name=startTime]").val(),
+                    endTime: $("input[name=endTime]").val()
                 },
                 dataType: 'html',
                 success: function (data) {

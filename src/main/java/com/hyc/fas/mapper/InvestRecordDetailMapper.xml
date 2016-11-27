@@ -112,7 +112,16 @@
         tx_date,
         b_t_i_id,
         inve_c_id
-        FROM bus_subs) subs1
+        FROM bus_subs
+        <where>
+            <if test="startTime != null">
+                AND <![CDATA[ tx_date >= #{startTime} ]]>
+            </if>
+            <if test="endTime != null">
+                AND <![CDATA[ tx_date <= #{endTime} ]]>
+            </if>
+        </where>
+        ) subs1
         ON u2.u_i_id = subs1.inve_c_id
         ) subs
         LEFT JOIN bus_tend_info tend
@@ -233,7 +242,16 @@
         tx_date,
         b_t_i_id,
         inve_c_id
-        FROM bus_subs) subs1
+        FROM bus_subs
+        <where>
+            <if test="startTime != null">
+                AND <![CDATA[ tx_date >= #{startTime} ]]>
+            </if>
+            <if test="endTime != null">
+                AND <![CDATA[ tx_date <= #{endTime} ]]>
+            </if>
+        </where>
+        ) subs1
         ON u2.u_i_id = subs1.inve_c_id
         ) subs
         LEFT JOIN bus_tend_info tend
