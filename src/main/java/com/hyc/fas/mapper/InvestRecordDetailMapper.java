@@ -1,6 +1,7 @@
 package com.hyc.fas.mapper;
 
 import com.hyc.fas.entity.InvestRecordDetail;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,9 +15,9 @@ import java.util.List;
 @Component
 public interface InvestRecordDetailMapper {
 
-    public List<InvestRecordDetail> getDirectInvestRecordDetail(String userid,String startTime,String endTime);
+    public List<InvestRecordDetail> getDirectInvestRecordDetail(@Param("userid") String userid, @Param("startTime")String startTime, @Param("endTime")String endTime);
 
-    public List<InvestRecordDetail> getInDirectInvestRecordDetail(String userid,String startTime,String endTime);
+    public List<InvestRecordDetail> getInDirectInvestRecordDetail(@Param("userid") String userid, @Param("startTime")String startTime, @Param("endTime")String endTime);
 
 
 }

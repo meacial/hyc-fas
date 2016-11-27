@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
 <body>
-
+<head>
+</head>
 <h4>投资用户统计数据</h4>
 <table>
     <thead>
@@ -31,6 +32,66 @@
         <td th:text="${investRecordDetail.investRecordLoanTerm}"></td>
     </tr>
     </tbody>
+    <tfoot>
+        <a id="last" href="">上一页</a> <!--<spaan>共<p th:text="${totalSize}">0</p> 条</spaan>--> <a id="next" href="">下一页</a>
+    </tfoot>
+    <!--<input id="rowIndex" type="hidden" th:value="${rowIndex}"/>
+    <input id="pageSize" type="hidden" th:value="${pageSize}"/>-->
 </table>
+
+
+<script type="application/javascript">
+    $.ready(function () {
+
+        /*var pageSize = $("#pageSize").val();
+        var rowIndex = $("#rowIndex").val();
+
+        function doQuery(pageSize,rowIndex) {
+            $.ajax({
+                url: /!*[[@{/auth/table}]]*!/ '',
+                type: 'post',
+                data: {
+                    investorType: $("input[name=investorType]:checked").val(),
+                    starttime: $("input[name=starttime]").val(),
+                    endTime: $("input[name=endtime]").val(),
+                    pageSize:pageSize,
+                    rowIndex:rowIndex
+                },
+                dataType: 'html',
+                success: function (data) {
+                    $(".table").html(data);
+                },
+                error: function () {
+                    console.error("err")
+                }
+            });
+        }
+
+        $("#last").attr('href',doQuery(pageSize,rowIndex-pageSize));
+        $("#next").attr('href',doQuery(pageSize,rowIndex+pageSize));
+
+        $qryBtn.on('click', function () {
+            /!*$.ajax({
+                url: /!*[[@{/auth/table}]]*!/ '',
+                type: 'post',
+                data: {
+                    investorType: $("input[name=investorType]:checked").val(),
+                    starttime: $("input[name=starttime]").val(),
+                    endTime: $("input[name=endtime]").val()
+                },
+                dataType: 'html',
+                success: function (data) {
+                    $(".table").html(data);
+                },
+                error: function () {
+                    console.error("err")
+                }
+            });*!/
+
+            doQuery(pageSize,rowIndex);
+        });*/
+    })
+</script>
+
 </body>
 </html>

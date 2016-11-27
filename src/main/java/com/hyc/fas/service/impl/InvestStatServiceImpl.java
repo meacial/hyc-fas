@@ -21,6 +21,11 @@ public class InvestStatServiceImpl implements InvestStatService {
 
     @Override
     public List<InvestRecordDetail> directUserAndInvDetail(String userid,String startTime,String endTime) {
+
+        // 查询直接推荐用户U_I_ID
+
+
+
         try {
             return investRecordDetailMapper.getDirectInvestRecordDetail(userid,startTime,endTime);
         } catch (Throwable throwable) {

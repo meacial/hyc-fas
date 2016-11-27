@@ -27,4 +27,8 @@ public abstract class AbstractController {
     protected String getUserIdFromSession(HttpServletRequest request) {
         return (String) request.getSession().getAttribute(HycFasDict.USERTOKEN);
     }
+
+    /*protected void setPageIndexAndPageRow2Session(HttpServletRequest request,int rowIndex,int pageSize) {
+        request.getSession().setAttribute();
+    }*/
 }

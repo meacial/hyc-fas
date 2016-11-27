@@ -4,6 +4,7 @@ import com.hyc.fas.annonation.NeedAuthController;
 import com.hyc.fas.common.HycFasConst;
 import com.hyc.fas.common.HycFasDict;
 import com.hyc.fas.common.StringUtils;
+import com.hyc.fas.common.TimeUtil;
 import com.hyc.fas.controller.AbstractController;
 import com.hyc.fas.entity.InvestRecordDetail;
 import com.hyc.fas.service.HycUserDetailService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -40,9 +42,13 @@ public class InvestStatController extends AbstractController {
 
         if (StringUtils.isEmpty(startTime)) {
             startTime = null;
+        } else {
+            startTime = TimeUtil.strdataftm(startTime);
         }
         if (StringUtils.isEmpty(endTime)) {
             endTime = null;
+        } else {
+            endTime = TimeUtil.strdataftm(endTime);
         }
 
         String investorType = request.getParameter(HycFasDict.INVESTORTYPE);
@@ -62,6 +68,9 @@ public class InvestStatController extends AbstractController {
         if (null != investRecordDetails && false==investRecordDetails.isEmpty()) {
             model.addAttribute("investRecordDetails", investRecordDetails);
         }
+
+        model.addAttribute(HycFasDict.STARTTIME, TimeUtil.str2Date(startTime));
+        model.addAttribute(HycFasDict.ENDTIME,TimeUtil.str2Date(endTime));
         return "table";
     }
 
@@ -72,7 +81,11 @@ public class InvestStatController extends AbstractController {
      * @return
      */
     @RequestMapping({"/main", "/"})
-    public String main(HttpServletRequest request, HttpServletResponse response) {
+    public String main(HttpServletRequest request, HttpServletResponse response,Model model) {
+        Calendar calendar = Calendar.getInstance();
+        model.addAttribute("endTime",calendar.getTime());
+        calendar.add(Calendar.DAY_OF_MONTH, -7);
+        model.addAttribute("startTime",calendar.getTime());
         return "main";
     }
 }
