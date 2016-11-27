@@ -80,8 +80,8 @@
         }
 
 
-        $("#last").attr('href',doQuery(pageSize,pageCnt - 1));
-        $("#next").attr('href',doQuery(pageSize,pageCnt + 1));
+        $("#last").attr('href',"javascript:"+doQuery(pageSize,pageCnt - 1));
+        $("#next").attr('href',"javascript:"+doQuery(pageSize,pageCnt + 1));
         /*
         $qryBtn.on('click', function () {
             /!*$.ajax({
