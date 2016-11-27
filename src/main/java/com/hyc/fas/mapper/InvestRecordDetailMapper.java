@@ -15,9 +15,9 @@ import java.util.List;
 @Component
 public interface InvestRecordDetailMapper {
 
-    public List<InvestRecordDetail> getDirectInvestRecordDetail(@Param("userid") String userid, @Param("startTime")String startTime, @Param("endTime")String endTime);
+    public List<InvestRecordDetail> getDirectInvestRecordDetail(@Param("userid") String userid, @Param("startTime")String startTime, @Param("endTime")String endTime,@Param("pageSize")int pageSize,@Param("rowStart")int pageCnt);
 
-    public List<InvestRecordDetail> getInDirectInvestRecordDetail(@Param("userid") String userid, @Param("startTime")String startTime, @Param("endTime")String endTime);
+    public List<InvestRecordDetail> getInDirectInvestRecordDetail(@Param("userid") String userid, @Param("startTime")String startTime, @Param("endTime")String endTime,@Param("pageSize")int pageSize,@Param("rowStart")int pageCnt);
 
 
 }

@@ -32,30 +32,42 @@
         <td th:text="${investRecordDetail.investRecordLoanTerm}"></td>
     </tr>
     </tbody>
-    <tfoot>
-        <a id="last" href="">上一页</a> <!--<spaan>共<p th:text="${totalSize}">0</p> 条</spaan>--> <a id="next" href="">下一页</a>
-    </tfoot>
+<!--    <tfoot>
+
+    </tfoot>-->
     <!--<input id="rowIndex" type="hidden" th:value="${rowIndex}"/>
     <input id="pageSize" type="hidden" th:value="${pageSize}"/>-->
 </table>
 
+<div>
+
+    <a id="last" href="">上一页</a> <!--<spaan>共<p th:text="${totalSize}">0</p> 条</spaan>--> <a id="next" href="">下一页</a>
+
+</div>
+
+<script th:inline="javascript">
+    var pageSize = /*[[${pageSize}]]*/'';
+    var pageCnt = /*[[${pageCnt}]]*/'';
+</script>
 
 <script type="application/javascript">
     $.ready(function () {
 
-        /*var pageSize = $("#pageSize").val();
-        var rowIndex = $("#rowIndex").val();
-
-        function doQuery(pageSize,rowIndex) {
+        function doQuery(pageSize,pageCnt) {
+            if (flag) {
+                pageCnt = pageCnt-1;
+            } else {
+                pageCnt = pageCnt +1;
+            }
             $.ajax({
-                url: /!*[[@{/auth/table}]]*!/ '',
+                url: /*[[@{/auth/table}]]*/ '',
                 type: 'post',
                 data: {
                     investorType: $("input[name=investorType]:checked").val(),
                     starttime: $("input[name=starttime]").val(),
                     endTime: $("input[name=endtime]").val(),
                     pageSize:pageSize,
-                    rowIndex:rowIndex
+                    pageCnt:pageCnt
                 },
                 dataType: 'html',
                 success: function (data) {
@@ -67,9 +79,10 @@
             });
         }
 
-        $("#last").attr('href',doQuery(pageSize,rowIndex-pageSize));
-        $("#next").attr('href',doQuery(pageSize,rowIndex+pageSize));
 
+        $("#last").attr('href',doQuery(pageSize,pageCnt - 1));
+        $("#next").attr('href',doQuery(pageSize,pageCnt + 1));
+        /*
         $qryBtn.on('click', function () {
             /!*$.ajax({
                 url: /!*[[@{/auth/table}]]*!/ '',

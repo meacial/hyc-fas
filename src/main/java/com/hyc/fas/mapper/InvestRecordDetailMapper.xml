@@ -131,7 +131,7 @@
         subs.rec_create_date_time DESC,
         subs.inv_create_date_time DESC,
         subs.tx_date DESC
-
+        LIMIT #{rowStart},#{pageSize}
     </select>
 
 
@@ -261,6 +261,7 @@
         subs.rec_create_date_time DESC,
         subs.inv_create_date_time DESC,
         subs.tx_date DESC
+        LIMIT #{rowStart},#{pageSize}
     </select>
 
 </mapper>

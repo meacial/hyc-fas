@@ -20,14 +20,14 @@ public class InvestStatServiceImpl implements InvestStatService {
     private InvestRecordDetailMapper investRecordDetailMapper;
 
     @Override
-    public List<InvestRecordDetail> directUserAndInvDetail(String userid,String startTime,String endTime) {
+    public List<InvestRecordDetail> directUserAndInvDetail(String userid,String startTime,String endTime,int pageSize,int pageCnt) {
 
         // 查询直接推荐用户U_I_ID
 
 
 
         try {
-            return investRecordDetailMapper.getDirectInvestRecordDetail(userid,startTime,endTime);
+            return investRecordDetailMapper.getDirectInvestRecordDetail(userid,startTime,endTime, pageSize,pageCnt);
         } catch (Throwable throwable) {
             System.out.println(throwable);
             return null;
@@ -35,9 +35,9 @@ public class InvestStatServiceImpl implements InvestStatService {
     }
 
     @Override
-    public List<InvestRecordDetail> inDirectUserAndInvDetail(String userid,String startTime,String endTime) {
+    public List<InvestRecordDetail> inDirectUserAndInvDetail(String userid,String startTime,String endTime,int pageSize,int pageCnt) {
         try {
-            return investRecordDetailMapper.getInDirectInvestRecordDetail(userid,startTime,endTime);
+            return investRecordDetailMapper.getInDirectInvestRecordDetail(userid,startTime,endTime,pageSize,pageCnt);
         } catch (Throwable throwable) {
             System.out.println(throwable);
             return null;

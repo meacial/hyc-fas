@@ -36,9 +36,18 @@ public class InvestStatController extends AbstractController {
     @RequestMapping("/table")
     public String table(HttpServletRequest request, HttpServletResponse response, Model model) {
 
+        model.addAttribute("pageSize",20);
+        model.addAttribute("pageCnt",1);
+
         // 默认选择7天时间的数据
         String startTime = request.getParameter(HycFasDict.STARTTIME);
         String endTime = request.getParameter(HycFasDict.ENDTIME);
+
+        int pageCnt = 1;
+        int pageSize = 20;
+        if (null != request.getParameter("pageCnt")) {
+            pageCnt =  Integer.parseInt(request.getParameter("pageCnt"));
+        }
 
         if (StringUtils.isEmpty(startTime)) {
             startTime = null;
@@ -59,16 +68,24 @@ public class InvestStatController extends AbstractController {
         List<InvestRecordDetail> investRecordDetails = null;
         if (HycFasConst.INVESTORTYPE_DIRECT.equals(investorType)) {
             // 直接投资数据
-            investRecordDetails = investStatService.directUserAndInvDetail(getUserIdFromSession(request),startTime,endTime);
+            investRecordDetails = investStatService.directUserAndInvDetail(getUserIdFromSession(request),startTime,endTime,pageSize,(pageCnt-1)*pageSize);
             model.addAttribute("investRecordDetails", investRecordDetails);
         } else {
             // 间接投资数据
-            investRecordDetails = investStatService.inDirectUserAndInvDetail(getUserIdFromSession(request),startTime,endTime);
+            investRecordDetails = investStatService.inDirectUserAndInvDetail(getUserIdFromSession(request),startTime,endTime,pageSize,(pageCnt-1)*pageSize);
         }
         if (null != investRecordDetails && false==investRecordDetails.isEmpty()) {
             model.addAttribute("investRecordDetails", investRecordDetails);
         }
 
+        if (null != investRecordDetails &&  investRecordDetails.size() < pageSize) {
+            pageCnt = pageCnt - 1;
+        }
+        if (pageCnt < 1) {
+            pageCnt = 1;
+        }
+        model.addAttribute("pageCnt",pageCnt);
+        model.addAttribute("pageSize", 20);
         model.addAttribute(HycFasDict.STARTTIME, TimeUtil.str2Date(startTime));
         model.addAttribute(HycFasDict.ENDTIME,TimeUtil.str2Date(endTime));
         return "table";
@@ -86,6 +103,7 @@ public class InvestStatController extends AbstractController {
         model.addAttribute("endTime",calendar.getTime());
         calendar.add(Calendar.DAY_OF_MONTH, -7);
         model.addAttribute("startTime",calendar.getTime());
+
         return "main";
     }
 }
