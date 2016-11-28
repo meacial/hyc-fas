@@ -1,6 +1,7 @@
 package com.hyc.fas.controller.login;
 
 import com.hyc.fas.annonation.NoAuthController;
+import com.hyc.fas.common.AppSecUtil;
 import com.hyc.fas.common.HycFasDict;
 import com.hyc.fas.common.SecurityUtil;
 import com.hyc.fas.common.StringUtils;
@@ -43,8 +44,8 @@ public class UserController extends AbstractController {
         }
 
         // TODO 这段执行特别慢，测试的时候，暂时注掉
-        // String desPhone = AppSecUtil.encryptMode(hycFasProperties.getDeskey(),userPhone,hycFasProperties.getCharset());
-        String desPhone = "pvsJr8X5TkeLLvVMzEuJpA==";
+        String desPhone = AppSecUtil.encryptMode(hycFasProperties.getDeskey(),userPhone,hycFasProperties.getCharset());
+//        String desPhone = "pvsJr8X5TkeLLvVMzEuJpA==";
 //        String desPhone = "UBFJUPI2kMQU+RwJs4EzJA=="; // TODO
         HycUser hycUser = userService.getHycUserByPhone(desPhone);
         if (hycUser == null) {
@@ -60,10 +61,6 @@ public class UserController extends AbstractController {
         }
         saveUserId2Session(request, hycUser.getUserid());
 //        saveUserId2Session(request, "2016112621580500300000001"); // TODO
-
-
-
-
         return "success";
     }
 

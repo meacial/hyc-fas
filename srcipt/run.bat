@@ -1,0 +1,1 @@
+java -classpath c:\hyc-fas\lib\*;c:\hyc-fas\config -jar hyc-fas.1.0.0.jar

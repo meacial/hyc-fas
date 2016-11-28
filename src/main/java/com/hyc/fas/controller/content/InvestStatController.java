@@ -75,24 +75,30 @@ public class InvestStatController extends AbstractController {
         if (HycFasConst.INVESTORTYPE_DIRECT.equals(investorType)) {
             // 直接投资数据
             investRecordDetails = investStatService.directUserAndInvDetail(getUserIdFromSession(request),startTime,endTime,pageSize,(pageCnt-1)*pageSize);
-            model.addAttribute("investRecordDetails", investRecordDetails);
+            if (null != investRecordDetails &&  investRecordDetails.size() < pageSize) {
+                pageCnt = pageCnt - 1;
+                if (pageCnt < 1) {
+                    pageCnt = 1;
+                }
+                if (investRecordDetails.size() == 0) {
+                    investRecordDetails = investStatService.directUserAndInvDetail(getUserIdFromSession(request),startTime,endTime,pageSize,(pageCnt-1)*pageSize);
+                }
+            }
         } else {
             // 间接投资数据
             investRecordDetails = investStatService.inDirectUserAndInvDetail(getUserIdFromSession(request),startTime,endTime,pageSize,(pageCnt-1)*pageSize);
+            if (null != investRecordDetails &&  investRecordDetails.size() < pageSize) {
+                pageCnt = pageCnt - 1;
+                if (pageCnt < 1) {
+                    pageCnt = 1;
+                }
+                if (investRecordDetails.size() == 0) {
+                    investRecordDetails = investStatService.inDirectUserAndInvDetail(getUserIdFromSession(request),startTime,endTime,pageSize,(pageCnt-1)*pageSize);
+                }
+            }
         }
         if (null != investRecordDetails && false==investRecordDetails.isEmpty()) {
             model.addAttribute("investRecordDetails", investRecordDetails);
-        }
-
-        if (null != investRecordDetails &&  investRecordDetails.size() < pageSize) {
-            pageCnt = pageCnt - 1;
-            if (investRecordDetails.size() == 0) {
-                investRecordDetails = investStatService.inDirectUserAndInvDetail(getUserIdFromSession(request),startTime,endTime,pageSize,(pageCnt-1)*pageSize);
-                model.addAttribute("investRecordDetails", investRecordDetails);
-            }
-        }
-        if (pageCnt < 1) {
-            pageCnt = 1;
         }
         model.addAttribute("pageCnt",pageCnt);
         model.addAttribute("pageSize", hycFasProperties.getPageSize());
