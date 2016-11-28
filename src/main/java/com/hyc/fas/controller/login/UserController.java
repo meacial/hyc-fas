@@ -67,6 +67,6 @@ public class UserController extends AbstractController {
     @RequestMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         request.getSession().invalidate();
-        return request.getContextPath();
+        return request.getContextPath()+"/login";
     }
 }
