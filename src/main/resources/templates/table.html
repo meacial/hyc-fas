@@ -1,9 +1,74 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
-<body>
+
+
 <head>
+    <script th:inline="javascript">
+        var pageSize = /*[[${pageSize}]]*/'';
+        var pageCnt = /*[[${pageCnt}]]*/'';
+        var url = /*[[@{/auth/table}]]*/'';
+        /*alert(pageCnt);
+        alert(pageSize);
+        alert(url);*/
+    </script>
+    <script type="application/javascript">
+
+            function doQuery(pageSize,pageCnt) {
+//                alert("doQuery");
+                $.ajax({
+                    url:  url,
+                    type: 'post',
+                    data: {
+                        investorType: $("input[name=investorType]:checked").val(),
+                        starttime: $("input[name=starttime]").val(),
+                        endTime: $("input[name=endtime]").val(),
+                        pageSize:pageSize,
+                        pageCnt:pageCnt
+                    },
+                    dataType: 'html',
+                    success: function (data) {
+                        $(".table").html(data);
+                    },
+                    error: function () {
+                        console.error("err")
+                    }
+                });
+            }
+//            $("#last").attr('href',"www.baidu.com");
+//            $("#next").attr('href',"www.baidu.com");
+
+//        $("#last").attr('href',"javascript:"+doQuery(pageSize,pageCnt - 1));
+//        $("#next").attr('href',"javascript:"+doQuery(pageSize,pageCnt + 1));
+            /*
+             $qryBtn.on('click', function () {
+             /!*$.ajax({
+             url: /!*[[@{/auth/table}]]*!/ '',
+             type: 'post',
+             data: {
+             investorType: $("input[name=investorType]:checked").val(),
+             starttime: $("input[name=starttime]").val(),
+             endTime: $("input[name=endtime]").val()
+             },
+             dataType: 'html',
+             success: function (data) {
+             $(".table").html(data);
+             },
+             error: function () {
+             console.error("err")
+             }
+             });*!/
+
+             doQuery(pageSize,rowIndex);
+             });*/
+    </script>
+
+
 </head>
+
+
+<body>
+
 <h4>投资用户统计数据</h4>
 <table>
     <thead>
@@ -39,71 +104,28 @@
     <input id="pageSize" type="hidden" th:value="${pageSize}"/>-->
 </table>
 
-<div>
+<div style="text-align: center">
 
-    <a id="last" href="">上一页</a> <!--<spaan>共<p th:text="${totalSize}">0</p> 条</spaan>--> <a id="next" href="">下一页</a>
+    <a id="last" href="javascript:void(0);">上一页</a>
+    <span>第<span th:text="${pageCnt}">1</span> 页</span>
+    <a id="next" href="javascript:void(0);">下一页</a>
 
 </div>
 
-<script th:inline="javascript">
-    var pageSize = /*[[${pageSize}]]*/'';
-    var pageCnt = /*[[${pageCnt}]]*/'';
-</script>
 
 <script type="application/javascript">
-    $.ready(function () {
-
-        function doQuery(pageSize,pageCnt) {
-            if (flag) {
-                pageCnt = pageCnt-1;
-            } else {
-                pageCnt = pageCnt +1;
-            }
-            $.ajax({
-                url: /*[[@{/auth/table}]]*/ '',
-                type: 'post',
-                data: {
-                    investorType: $("input[name=investorType]:checked").val(),
-                    starttime: $("input[name=starttime]").val(),
-                    endTime: $("input[name=endtime]").val(),
-                    pageSize:pageSize,
-                    pageCnt:pageCnt
-                },
-                dataType: 'html',
-                success: function (data) {
-                    $(".table").html(data);
-                },
-                error: function () {
-                    console.error("err")
-                }
-            });
-        }
-
-
-        $("#last").attr('href',"javascript:"+doQuery(pageSize,pageCnt - 1));
-        $("#next").attr('href',"javascript:"+doQuery(pageSize,pageCnt + 1));
-        /*
-        $qryBtn.on('click', function () {
-            /!*$.ajax({
-                url: /!*[[@{/auth/table}]]*!/ '',
-                type: 'post',
-                data: {
-                    investorType: $("input[name=investorType]:checked").val(),
-                    starttime: $("input[name=starttime]").val(),
-                    endTime: $("input[name=endtime]").val()
-                },
-                dataType: 'html',
-                success: function (data) {
-                    $(".table").html(data);
-                },
-                error: function () {
-                    console.error("err")
-                }
-            });*!/
-
-            doQuery(pageSize,rowIndex);
-        });*/
+    
+    $("#last").on('click',function () {
+//        alert("last")
+        doQuery(pageSize ,pageCnt - 1);
     })
+
+
+    $("#next").on('click',function () {
+//        alert("next")
+        doQuery(pageSize ,pageCnt + 1);
+    })
+    
 </script>
 
 </body>

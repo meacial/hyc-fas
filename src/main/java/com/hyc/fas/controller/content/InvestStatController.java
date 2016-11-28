@@ -5,6 +5,7 @@ import com.hyc.fas.common.HycFasConst;
 import com.hyc.fas.common.HycFasDict;
 import com.hyc.fas.common.StringUtils;
 import com.hyc.fas.common.TimeUtil;
+import com.hyc.fas.config.HycFasProperties;
 import com.hyc.fas.controller.AbstractController;
 import com.hyc.fas.entity.InvestRecordDetail;
 import com.hyc.fas.service.HycUserDetailService;
@@ -32,11 +33,13 @@ public class InvestStatController extends AbstractController {
     private InvestStatService investStatService;
     @Autowired
     private HycUserDetailService hycUserDetailService;
+    @Autowired
+    private HycFasProperties hycFasProperties;
 
     @RequestMapping("/table")
     public String table(HttpServletRequest request, HttpServletResponse response, Model model) {
 
-        model.addAttribute("pageSize",20);
+        model.addAttribute("pageSize",hycFasProperties.getPageSize());
         model.addAttribute("pageCnt",1);
 
         // 默认选择7天时间的数据
@@ -44,9 +47,12 @@ public class InvestStatController extends AbstractController {
         String endTime = request.getParameter(HycFasDict.ENDTIME);
 
         int pageCnt = 1;
-        int pageSize = 20;
+        int pageSize = hycFasProperties.getPageSize();
         if (null != request.getParameter("pageCnt")) {
             pageCnt =  Integer.parseInt(request.getParameter("pageCnt"));
+        }
+        if (pageCnt < 1) {
+            pageCnt = 1;
         }
 
         if (StringUtils.isEmpty(startTime)) {
@@ -80,12 +86,16 @@ public class InvestStatController extends AbstractController {
 
         if (null != investRecordDetails &&  investRecordDetails.size() < pageSize) {
             pageCnt = pageCnt - 1;
+            if (investRecordDetails.size() == 0) {
+                investRecordDetails = investStatService.inDirectUserAndInvDetail(getUserIdFromSession(request),startTime,endTime,pageSize,(pageCnt-1)*pageSize);
+                model.addAttribute("investRecordDetails", investRecordDetails);
+            }
         }
         if (pageCnt < 1) {
             pageCnt = 1;
         }
         model.addAttribute("pageCnt",pageCnt);
-        model.addAttribute("pageSize", 20);
+        model.addAttribute("pageSize", hycFasProperties.getPageSize());
         model.addAttribute(HycFasDict.STARTTIME, TimeUtil.str2Date(startTime));
         model.addAttribute(HycFasDict.ENDTIME,TimeUtil.str2Date(endTime));
         return "table";

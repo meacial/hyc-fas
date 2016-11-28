@@ -17,6 +17,8 @@ public class HycFasProperties {
 
     private String deskey;
 
+    private int pageSize;
+
     public String getCharset() {
         return charset;
     }
@@ -31,5 +33,13 @@ public class HycFasProperties {
 
     public void setDeskey(String deskey) {
         this.deskey = deskey;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
     }
 }

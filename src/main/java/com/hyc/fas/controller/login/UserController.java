@@ -44,8 +44,8 @@ public class UserController extends AbstractController {
 
         // TODO 这段执行特别慢，测试的时候，暂时注掉
         // String desPhone = AppSecUtil.encryptMode(hycFasProperties.getDeskey(),userPhone,hycFasProperties.getCharset());
-//        String desPhone = "pvsJr8X5TkeLLvVMzEuJpA==";
-        String desPhone = "UBFJUPI2kMQU+RwJs4EzJA=="; // TODO
+        String desPhone = "pvsJr8X5TkeLLvVMzEuJpA==";
+//        String desPhone = "UBFJUPI2kMQU+RwJs4EzJA=="; // TODO
         HycUser hycUser = userService.getHycUserByPhone(desPhone);
         if (hycUser == null) {
             return "fail";
@@ -59,7 +59,7 @@ public class UserController extends AbstractController {
             return "fail";
         }
         saveUserId2Session(request, hycUser.getUserid());
-        saveUserId2Session(request, "2016112621580500300000001"); // TODO
+//        saveUserId2Session(request, "2016112621580500300000001"); // TODO
 
 
 
