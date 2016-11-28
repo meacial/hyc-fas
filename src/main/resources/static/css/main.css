@@ -57,6 +57,11 @@ table td {
     /*border: solid 0.5px green;*/
 }
 
+table thead tr th {
+    border-top: solid 2px #666666;
+    background-color: #666666;
+}
+
 /*
 
 th {

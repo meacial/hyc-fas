@@ -8,6 +8,9 @@
         var pageSize = /*[[${pageSize}]]*/'';
         var pageCnt = /*[[${pageCnt}]]*/'';
         var url = /*[[@{/auth/table}]]*/'';
+        var investorType = $("input[name=investorType]:checked").val();
+        var isDirect = investorType == '1';
+//        alert(investorType);
         /*alert(pageCnt);
         alert(pageSize);
         alert(url);*/
@@ -85,8 +88,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="investRecordDetail: ${investRecordDetails}">
-        <td>1</td>
+    <tr th:each="investRecordDetail,investRecordDetailStat: ${investRecordDetails}">
+        <td th:text="${investRecordDetailStat.index + 1 + (pageSize * (pageCnt - 1))}"></td>
         <td th:text="${investRecordDetail.rec_real_name}"></td>
         <td th:text="${investRecordDetail.rec_phone_v}"></td>
         <td th:text="${#dates.format(investRecordDetail.inv_create_date_time, 'yyyy-MM-dd HH:mm')}">N/A</td>
