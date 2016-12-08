@@ -3,6 +3,8 @@ package com.hyc.fas.controller;
 import com.hyc.fas.annonation.NoAuthController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 默认处理类
  *
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class DefaultController extends AbstractController {
     @RequestMapping("")
-    public String index() {
+    public String index(HttpServletRequest request) {
         return "login";
     }
 }

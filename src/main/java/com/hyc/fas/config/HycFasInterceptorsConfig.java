@@ -40,7 +40,7 @@ public class HycFasInterceptorsConfig extends WebMvcConfigurerAdapter {
                 }
                 if (past == false) {
                     // throw new AuthCheckException(handler.toString());
-                    response.sendRedirect(request.getContextPath()+"/login");
+                    response.sendRedirect(request.getContextPath());
                 }
                 return past;
             }
