@@ -88,7 +88,11 @@ public class InvestRecordDetail implements Serializable {
     }
 
     public void setInvestRecordLoanTerm(String investRecordLoanTerm) {
-        this.investRecordLoanTerm = investRecordLoanTerm;
+        if (null == investRecordLoanTerm || "".equals(investRecordLoanTerm)) {
+            investRecordLoanTerm = "0";
+        }
+        int investRecordLoanTermInt = Integer.parseInt(investRecordLoanTerm);
+        this.investRecordLoanTerm = investRecordLoanTermInt+"";
     }
 
     public String getInvestRecordLoanTermType() {
