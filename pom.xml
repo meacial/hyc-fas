@@ -8,6 +8,10 @@
     <version>0.0.1</version>
     <packaging>jar</packaging>
 
+
+    <!--<base>e:\\</base>--> <!-- can be access by ${project.base } -->
+
+
     <name>hyc-fas</name>
     <description>Demo project for Spring Boot</description>
 
@@ -196,7 +200,12 @@
 
 
     </dependencies>
+
+
     <profiles>
+
+
+
         <profile>
             <id>dev</id>
             <properties>

@@ -120,6 +120,7 @@
             <if test="endTime != null">
                 AND <![CDATA[ tx_date <= #{endTime} ]]>
             </if>
+            AND (status='01' OR status='04')
         </where>
         ) subs1
         ON u2.u_i_id = subs1.inve_c_id
@@ -250,6 +251,7 @@
             <if test="endTime != null">
                 AND <![CDATA[ tx_date <= #{endTime} ]]>
             </if>
+            AND (status='01' OR status='04')
         </where>
         ) subs1
         ON u2.u_i_id = subs1.inve_c_id
